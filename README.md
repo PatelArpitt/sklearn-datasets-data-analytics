@@ -24,3 +24,9 @@
 6. Visualize the expected vs. predicted.
 7. Create the regression model metrics.
 8. Comparing the mean r2 scores of various models. (LinearRegression, ElasticNet, Lasso, and Ridge)
+
+## Future Work
+* Make changes to the code for the support of dropdown selected dataset. (dynamic importing of dataset from sk.datasets library)
+* Optimize the code for greater efficiency and error handling.
+* Upgrade the program into a GUI based system using TKinter module for user interaction,
+* Expanding the scope of the code by adding a feature for user to upload a dataset and be able to perform analysis on it.
