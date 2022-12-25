@@ -36,7 +36,7 @@ current_step = 1
 
 # %%
 # Exit and Continue buttons with exit program and increment step functions
-def halt_program(arg):
+def halt_program(arg = None):
     try:
     # Raising exception when user clicks the Exit button without killing the jupytor ipython kernel
         raise ExitException("You have exited the program successfully!")
@@ -54,7 +54,7 @@ def halt_program(arg):
         display(exit_btn)
 
 # Function to restart the program alongwith resetting the current step to 1st step (dataset selection) and clearing the output
-def restart_program(arg):
+def restart_program(arg = None):
     global current_step
     current_step = 1
     clear_output(wait = True)
@@ -62,7 +62,7 @@ def restart_program(arg):
     user_interaction_module()
     
 # Function to exit the program, which will result in completely unbind of the variables from the system and killing the kernel process
-def exit_program(arg):
+def exit_program(arg = None):
     global current_step
     current_step = 1
     clear_output(wait = True)
@@ -88,7 +88,7 @@ def ask_user_buttons():
 
 
 # Setting the active_option globally for the code, so that the functions to be executed knows which dataset is selected
-def option_california_housing(arg):
+def option_california_housing(arg = None):
     global active_option
     print('You chose the California Housing Dataset')
     active_option = 'option_california_housing'
@@ -101,7 +101,7 @@ def option_diabetes(arg):
     load_dataset()
 
 # Optional input from the sklearn.datasets dropdown
-def option_other_dataset(arg):
+def option_other_dataset(arg = None):
     print(f'You chose the {arg["new"]} Dataset from the Dropdown')
     global active_option
     active_option = arg['new']
@@ -173,7 +173,7 @@ def data_exploration():
         for feature in dataset.feature_names:
             plt.figure(figsize = (16, 9))
             sns.scatterplot(data = sample_df, x = feature, y = 'MedianVal', hue = 'MedianVal', palette = 'hot', legend = False)
-
+            
     # Asking the user for input decision
     ask_user_buttons()
 
@@ -261,26 +261,34 @@ def model_comparisions():
             f'mean of r2 scores = {scores.mean():.3f}')
     
     # Asking the user for input decision
-    ask_user_buttons()
+    halt_program()
 
 
 # Case based conditional module to execute following function stack based on the current_step's value
 def user_interaction_module():
     if current_step == 1:
+        print("Step 1: Load the dataset")
         dataset_selection()
     elif current_step == 2:
+        print("Step 2: Explore the data")
         data_exploration()
     elif current_step == 3:
+        print("Step 3: Split the data for training and testing")
         data_splitting()
     elif current_step == 4:
+        print("Step 4: Train the data model")
         training_model()
     elif current_step == 5:
+        print("Step 5: Test the data model")
         testing_model()
     elif current_step == 6:
+        print("Step 6: Visualize the expected vs. predicted")
         expected_vs_predicted_viz()
     elif current_step == 7:
+        print("Step 7: Create the regression model metrics")
         regression_model_metrics()
     elif current_step == 8:
+        print("Step 8: Comparing mean of r2 scores of various models")
         model_comparisions()
 
 # %%
